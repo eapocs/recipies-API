@@ -96,7 +96,7 @@ def add_recipe(recipe_json: Recipe):
     recipe_name = recipe_dict['name']
     logger.info(f'Добавлен новый рецепт: "{recipe_name}"')
     series = pd.Series(recipe_dict.values(), index=df.columns)
-    df.append(series, ignore_index=True)
+    df.loc[-1] = recipe_dict.values()
 
     #проверка
     #mask = df['name'].apply(lambda x: recipe_dict['name'] in x)
